@@ -3,7 +3,11 @@ val input_zip = raw_input.indices zip raw_input
 
 // function to run the opcode calculator
 // takes the whole mutable map, runs the calculation until it hits a 99, then returns the new map
-def opcode_calculator(this_map: collection.mutable.Map[Int, Int]): collection.mutable.Map[Int, Int] = {
+def opcode_calculator(this_map: collection.mutable.Map[Int, Int],
+                      noun: Int,
+                      verb: Int): collection.mutable.Map[Int, Int] = {
+  this_map(1) = noun
+  this_map(2) = verb
   var ix = 0
 
   while(true){
@@ -22,10 +26,8 @@ def opcode_calculator(this_map: collection.mutable.Map[Int, Int]): collection.mu
 // Part 1
 def part1(): Int = {
   val this_map = collection.mutable.Map(input_zip.toMap.toSeq: _*)
-  this_map(1) = 12
-  this_map(2) = 2
 
-  opcode_calculator(this_map)(0)
+  opcode_calculator(this_map, 12, 2)(0)
 }
 
 // Part 2
@@ -33,10 +35,8 @@ def part2(): Int = {
   for (x <- 0 to 100) {
     for (y <- 0 to 100) {
       val this_map = collection.mutable.Map(input_zip.toMap.toSeq: _*)
-      this_map(1) = x
-      this_map(2) = y
 
-      val calculated = opcode_calculator(this_map)(0)
+      val calculated = opcode_calculator(this_map, x, y)(0)
       if (calculated == 19690720) {
         return 100 * x + y
       }
