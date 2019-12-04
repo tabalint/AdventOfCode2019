@@ -11,12 +11,11 @@ def opcode_calculator(this_map: collection.mutable.Map[Int, Int],
   var ix = 0
 
   while(true){
-  val op = this_map(ix)
-  op match {
+  this_map(ix) match {
     case 1 => this_map(this_map(ix+3)) = this_map(this_map(ix+1)) + this_map(this_map(ix+2))
-    ix += 4
+              ix += 4
     case 2 => this_map(this_map(ix+3)) = this_map(this_map(ix+1)) * this_map(this_map(ix+2))
-    ix += 4
+              ix += 4
     case 99 => return this_map
     }
   }

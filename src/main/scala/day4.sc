@@ -11,8 +11,8 @@ validPasswords.length
 
 // Part 2
 val validerPasswords =
-validPasswords.map(x=> (x._1, x._1.toString.toArray.map(_.toString.toInt)))
-    .map(x => (x._1, x._2.groupMapReduce(_.intValue)(_ => 1)(_ + _).values))
-    .filter(x => x._2.exists(_==2))
+validPasswords.map(x=> (x._1, x._1.toString.toArray.map(_.toString.toInt)))  // rebuild tuples with valid passwords
+    .map(x => (x._1, x._2.groupMapReduce(_.intValue)(_ => 1)(_ + _).values))  // reduce each array (tuple._2) to number of times each digit is repeated
+    .filter(x => x._2.exists(_==2))  // ensure that there is a strict pair in the valid passwords
 
 validerPasswords.length
