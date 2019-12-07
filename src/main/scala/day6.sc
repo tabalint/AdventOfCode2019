@@ -26,4 +26,4 @@ planet_paths.foldLeft(0)((x, y) => x + y._2.length)
 //Part 2 - get parts of YOU list and SAN list that aren't in common, sum sizes
 val youList = planet_paths.filter(_._1 == "YOU").flatMap(_._2).toList
 val santaList = planet_paths.filter(_._1 == "SAN").flatMap(_._2).toList
-youList.filterNot(santaList.contains(_)).size + santaList.filterNot(youList.contains(_)).size
+youList.size + santaList.size - 2*youList.intersect(santaList).size
